@@ -1,16 +1,3 @@
-const String appName = "Purus Lern App";
-
-Map<String, List<String>> users = {
-  "arifnator@icloud.com": ["Arifnator", "Pass12."],
-  "ferro36@icloud.com": ["Ferhatnator", "fero23."]
-};
-
-const List<int> activationCodes = [147084, 273947, 104739, 173907, 103738];
-
-String inputLogin = "Arifnator";
-String inputPassword = "Pass12.";
-int activationCode = 104739;
-
 void main() {
   if (inputLogin.isEmpty) {
     print("Bitte geben Sie Ihren Benutzernamen oder Ihre E-Mail ein!");
