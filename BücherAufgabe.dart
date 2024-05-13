@@ -46,7 +46,8 @@ void main() {
       }
     }
   }
-  recommendedBooks.sort((a, b) => b[1].compareTo(a[1])); // Das einzige, was ich jetzt nicht nachvollziehen kann..
+  recommendedBooks.sort((a, b) => b[1].compareTo(
+      a[1])); // Das einzige, was ich jetzt nicht nachvollziehen kann..
   for (var book in recommendedBooks) {
     print("Empfehle ${book[0]} mit einer Punktzahl von ${book[1]}.");
   }

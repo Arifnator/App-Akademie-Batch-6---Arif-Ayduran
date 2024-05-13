@@ -31,3 +31,5 @@ void main() {
     print("Bitte geben Sie etwas ein! (Beachten Sie die Formatierung!)");
   }
 }
+
+// Irgendwie gings nicht mit leer lassen
