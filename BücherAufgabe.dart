@@ -25,8 +25,8 @@ void main() {
     String genre = book[1];
     String uGenre = book[2];
     double review = book[3];
-    int year = book[4];
-
+    // int year = book[4];
+    
     for (var prefGenre in prefGenres) {
       String prefGenreName = prefGenre[0];
       int prefGenrePrio = prefGenre[1];
