@@ -1,4 +1,4 @@
-import "Variablen.dart";
+import "Variablen_LogReg.dart";
 
 void main() {
   if (regEmail.isEmpty) {
