@@ -1,4 +1,4 @@
-String trafficLight = "Rot";
+String trafficLight = "Gelb";
 
 void main (){
 
