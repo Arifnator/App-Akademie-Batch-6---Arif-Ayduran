@@ -1,5 +1,6 @@
 import "Variablen_LogReg.dart";
-String activationCode = "104739";void main() {
+String activationCode = "104739";
+void main() {
   if (inputLogin.isEmpty) {
     print("Bitte geben Sie Ihren Benutzernamen oder Ihre E-Mail ein!");
   } else {
