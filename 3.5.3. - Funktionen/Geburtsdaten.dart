@@ -13,6 +13,5 @@ void printNameAges(List<String> names, List<int> birthYears) {
 }
 
 int ageFromBirthYear(int birthYear) {
-  int currentYear = 2024;
-  return currentYear - birthYear;
+  return 2024 - birthYear;
 }
