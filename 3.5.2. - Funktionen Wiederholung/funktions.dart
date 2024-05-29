@@ -1,3 +1,5 @@
+import 'dart:io';
+
 void helloWorld() {
   print("Hello World.");
 }
@@ -115,4 +117,157 @@ bool istPrimzahl(int zahl) {
   }
 
   return true;
+}
+
+int reverseNumber(int number) {
+  int reversedNumber = 0;
+
+  while (number != 0) {
+    int lastDigit = number % 10;
+    reversedNumber = reversedNumber * 10 + lastDigit;
+    number = number ~/ 10;
+  }
+
+  return reversedNumber;
+}
+
+Map<String, int> timeFromSeconds(int s) {
+  Map<String, int> time = {};
+  int secondsRemain = s % 60;
+  int minutesRemain = (s ~/ 60) % 60;
+  int hours = s ~/ 3600;
+  time.addAll({"h": hours, "m": minutesRemain, "s": secondsRemain});
+  return time;
+}
+
+bool anagramm(String a, String b) {
+  if (a.length != b.length) {
+    return false;
+  }
+
+  List<String> zeichenkettenA = a.split('')..sort();
+  List<String> zeichenkettenB = b.split('')..sort();
+
+  print(zeichenkettenB);
+  print(zeichenkettenA);
+
+  for (int i = 0; i < a.length; i++) {
+    if (zeichenkettenA[i] != zeichenkettenB[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+double multiplicationAdvanced(double a, double b) {
+  double ergebnis = 0;
+
+  for (int i = 0; i < b; i++) {
+    ergebnis += a;
+  }
+
+  return ergebnis;
+}
+
+List<String> wordsInText(String text) {
+  List<String> words = [];
+  String currentWord = '';
+
+  for (int i = 0; i < text.length; i++) {
+    if (text[i] != ' ') {
+      currentWord += text[i];
+    } else {
+      words.add(currentWord);
+      currentWord = '';
+    }
+  }
+  words.add(currentWord);
+
+  return words;
+}
+
+Map<String, int> anzahlText(String text) {
+  int spaces = 0;
+  int vocals = 0;
+  int specialChars = 0;
+
+  RegExp letterOrDigit = RegExp(r'[a-zA-Z0-9]');
+
+  for (int i = 0; i < text.length; i++) {
+    if (text[i] == " ") {
+      spaces++;
+    } else if (letterOrDigit.hasMatch(text[i])) {
+      if (text[i].toLowerCase() == "a" ||
+          text[i].toLowerCase() == "e" ||
+          text[i].toLowerCase() == "i" ||
+          text[i].toLowerCase() == "o" ||
+          text[i].toLowerCase() == "u") {
+        vocals++;
+      }
+    } else {
+      specialChars++;
+    }
+  }
+
+  return {
+    "Leerzeichen": spaces,
+    "Vokale": vocals,
+    "Sonderzeichen": specialChars
+  };
+}
+
+void fizzBuzz(int max) {
+  Map<int, String> fizzMap = {};
+
+  for (int i = 1; i <= max; i++) {
+    if (i % 3 == 0 && i % 5 == 0) {
+      fizzMap[i] = "FizzBuzz";
+    } else if (i % 3 == 0) {
+      fizzMap[i] = "Fizz";
+    } else if (i % 5 == 0) {
+      fizzMap[i] = "Buzz";
+    } else {
+      fizzMap[i] = "";
+    }
+  }
+  print(fizzMap);
+}
+
+void square(int q) {
+  for (int i = 0; i < q; i++) {
+    stdout.write("#");
+    for (int i = 1; i < q; i++) {
+      stdout.write(" #");
+    }
+    print("");
+  }
+}
+
+bool palindrom(String text) {
+  for (int i = 0; i < text.length / 2; i++) {
+    if (text.toLowerCase()[i] != text.toLowerCase()[text.length - i - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool klammer(String input) {
+  int anzahlKlammerAuf = 0;
+  int anzahlKlammerZu = 0;
+
+  for (int i = 0; i < input.length; i++) {
+    if (input[i] == "(") {
+      anzahlKlammerAuf++;
+    } else if (input[i] == ")") {
+      anzahlKlammerZu++;
+    }
+  }
+
+  if (anzahlKlammerZu == anzahlKlammerAuf) {
+    return true;
+  } else {
+    return false;
+  }
 }

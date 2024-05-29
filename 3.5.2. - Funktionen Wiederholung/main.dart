@@ -52,4 +52,22 @@ void main() {
   } else {
     print('$zahl ist keine Primzahl.');
   }
+
+  print(reverseNumber(13827124));
+  int seconds = 12345;
+  print(
+      "$seconds Sekunden sind --> ${timeFromSeconds(seconds)["h"]} Stunden, ${timeFromSeconds(seconds)["m"]} Minuten, ${timeFromSeconds(seconds)["s"]} Sekunden");
+
+  print(anagramm("dsj", "jds"));
+
+  print(multiplicationAdvanced(5.5, 7));
+
+  print(wordsInText("ashdalskd asdjlasd. Ajdasjd"));
+  print(anzahlText(
+      "damsdkKLDHKLSdndlkAhsdÜOP8 7 8  /( /S)= 7S089/ S908%&S 5S)/%59S&&/)=S S) S6=S&&S&68S&(S&(=S6(=086S   AAAAOSIPIOSIWIEOWQK)))"));
+
+  fizzBuzz(32);
+  square(12);
+  print(palindrom("LagERrEgal"));
+  print(klammer("((89+))"));
 }
