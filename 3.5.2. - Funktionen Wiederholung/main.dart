@@ -31,6 +31,7 @@ void main() {
 
   int p1 = produkt(2, 4);
   print(produkt(p1, 5));
+  print(produkt(2, (produkt(3, 4))));
 
   print(reverse(-34));
   print(smallestNumber(nummern1));
