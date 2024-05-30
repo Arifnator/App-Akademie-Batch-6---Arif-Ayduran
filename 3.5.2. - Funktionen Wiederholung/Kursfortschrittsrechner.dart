@@ -1,5 +1,7 @@
 import 'dart:io';
 
+int absoluteDays = 270;
+
 void main() {
   int? completedDays;
   String dayOne = "Tage";
@@ -10,8 +12,10 @@ void main() {
     print(
         "Willkommen zum Kursfortschrittsrechner!\n\nBitte gib die Anzahl der Tage ein, die du bereits im Kurs absolviert hast:");
     completedDays = int.tryParse(stdin.readLineSync()!);
-    if (completedDays != null && completedDays >= 0 && completedDays <= 270) {
-      if (completedDays == 269) {
+    if (completedDays != null &&
+        completedDays >= 0 &&
+        completedDays <= absoluteDays) {
+      if (completedDays == absoluteDays - 1) {
         left = "bleibt nur";
         leftDay = "Tag";
       }
@@ -19,13 +23,15 @@ void main() {
         dayOne = "Tag";
       }
       print(
-          "\nDu hast $completedDays $dayOne von 270 Tagen absolviert. \nDas entspricht einem Fortschritt von ${daysInPercent(completedDays).toStringAsFixed(2)} %. \nEs $left noch ${daysLeft(completedDays)} $leftDay\n\n${mileStone(daysInPercent(completedDays))}");
+          "\nDu hast $completedDays $dayOne von $absoluteDays Tagen absolviert. \nDas entspricht einem Fortschritt von ${daysInPercent(completedDays, absoluteDays).toStringAsFixed(2)} %. \nEs $left noch ${daysLeft(completedDays)} $leftDay\n\n${mileStone(daysInPercent(completedDays, absoluteDays))}");
     }
-  } while (completedDays == null || completedDays < 0 || completedDays > 270);
+  } while (completedDays == null ||
+      completedDays < 0 ||
+      completedDays > absoluteDays);
 }
 
-double daysInPercent(int days) => days / 270 * 100;
-int daysLeft(int days) => 270 - days;
+double daysInPercent(int days, int absoluteDays) => days / absoluteDays * 100;
+int daysLeft(int days) => absoluteDays - days;
 String mileStone(double percent) {
   switch (percent) {
     case 0:
