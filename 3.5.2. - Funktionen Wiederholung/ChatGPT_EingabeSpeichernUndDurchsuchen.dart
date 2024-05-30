@@ -53,4 +53,6 @@ void main() {
       }
     }
   }
+
+  print (nameBirthdateMap);
 }
