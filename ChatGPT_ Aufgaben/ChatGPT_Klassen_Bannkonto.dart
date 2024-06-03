@@ -127,7 +127,7 @@ class bankkonto {
 
       while (true) {
         print(
-            "\n\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.");
+            "\n\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.\n");
         String? auswahl = stdin.readLineSync();
         if (auswahl == null || auswahl.isEmpty) {
           print("\nKeine Eingabe.");
