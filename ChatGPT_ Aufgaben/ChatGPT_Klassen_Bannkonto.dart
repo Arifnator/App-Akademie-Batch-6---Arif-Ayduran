@@ -29,7 +29,7 @@ class bankkonto {
   double einzahlen(double e) {
     kontostand += e;
     print(
-        "Die Einzahlung von $e € war erfolgreich. Aktueller Kontostand: $kontostand €");
+        "\nDie Einzahlung von $e € war erfolgreich. Aktueller Kontostand: $kontostand €");
     return kontostand;
   }
 
@@ -37,22 +37,22 @@ class bankkonto {
     if (kontostand >= a) {
       kontostand -= a;
       print(
-          "Die Auszahlung von $a € war erfolgreich. Aktueller Kontostand: $kontostand €");
+          "\nDie Auszahlung von $a € war erfolgreich. Aktueller Kontostand: $kontostand €");
       return kontostand;
     } else {
       print(
-          "Sie haben nicht genug Geld auf dem Konto. Aktueller Kontostand: $kontostand €");
+          "\nSie haben nicht genug Geld auf dem Konto. Aktueller Kontostand: $kontostand €");
       return kontostand;
     }
   }
 
   void kontostand_anzeigen() {
-    print("Aktueller Kontostand: $kontostand €");
+    print("\nAktueller Kontostand: $kontostand €");
   }
 
   static bool newReg() {
     print(
-        "Willkommen bei der Bank Arifmethrisch.\nWas möchten Sie tun?\n- 'neu' um ein neues Bankkonto anzulegen,\n- 'login' um auf Ihr Konto zuzugreifen\n- 'ende' um zu beenden.\n");
+        "\nWillkommen bei der Bank Arifmethrisch.\n\nWas möchten Sie tun?\n- 'neu' um ein neues Bankkonto anzulegen,\n- 'login' um auf Ihr Konto zuzugreifen\n- 'ende' um zu beenden.\n");
     String? inputLogin = stdin.readLineSync();
     if (inputLogin == null || inputLogin.isEmpty) {
       print("Keine Eingabe.");
@@ -71,7 +71,7 @@ class bankkonto {
 
   static Map<String, double> neuesKonto() {
     print(
-        "Bitte geben Sie eine Kontolegitimation ein! ('ende' um zu beenden.)");
+        "\nBitte geben Sie eine Kontolegitimation ein! ('ende' um zu beenden.)");
     String? inputNewLegit = stdin.readLineSync();
     if (inputNewLegit == null || inputNewLegit.isEmpty) {
       print("Keine Eingabe.");
@@ -80,7 +80,7 @@ class bankkonto {
       exit(0);
     } else {
       print(
-          "Bitte geben Sie ihr Startguthaben ein! Format: '213.41' ('ende' um zu beenden.)");
+          "\nBitte geben Sie ihr Startguthaben ein! Format: '213.41' ('ende' um zu beenden.)");
       String? inputFund = stdin.readLineSync();
       if (inputFund == null || inputFund.isEmpty) {
         print("Keine Eingabe. Die Registrierung wird neu begonnen.");
@@ -88,11 +88,11 @@ class bankkonto {
       } else if (inputNewLegit.toLowerCase() == "ende") {
         exit(0);
       } else if (double.tryParse(inputFund) == null) {
-        print("Ungültiges Format. Die Registrierung wird neu begonnen.");
+        print("\nUngültiges Format. Die Registrierung wird neu begonnen.");
         return neuesKonto();
       } else {
         userData.addAll({inputNewLegit: double.parse(inputFund)});
-        print("Registrierung abgeschlossen.");
+        print("\nRegistrierung abgeschlossen.");
         return {inputNewLegit: double.parse(inputFund)};
       }
     }
@@ -100,10 +100,10 @@ class bankkonto {
 
   static String login() {
     print(
-        "Bitte geben Sie ihre Kontolegitimation ein! ('ende' um zu beenden.)");
+        "\nBitte geben Sie ihre Kontolegitimation ein! ('ende' um zu beenden.)");
     String? inputLegit = stdin.readLineSync();
     if (inputLegit == null || inputLegit.isEmpty) {
-      print("Keine Eingabe.");
+      print("\nKeine Eingabe.");
       return login();
     } else if (inputLegit.toLowerCase() == "ende") {
       exit(0);
@@ -111,7 +111,7 @@ class bankkonto {
       if (userData.containsKey(inputLegit)) {
         return inputLegit;
       } else {
-        print("Keine Übereinstimmung.");
+        print("\nKeine Übereinstimmung.");
         return login();
       }
     }
@@ -127,10 +127,10 @@ class bankkonto {
 
       while (true) {
         print(
-            "\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.");
+            "\n\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.");
         String? auswahl = stdin.readLineSync();
         if (auswahl == null || auswahl.isEmpty) {
-          print("Keine Eingabe.");
+          print("\nKeine Eingabe.");
           continue;
         } else if (auswahl.toLowerCase() == "logout") {
           return mainMenu();
@@ -138,7 +138,7 @@ class bankkonto {
           exit(0);
         } else if (auswahl.toLowerCase() == "einzahlen") {
           print(
-              "Bitte geben Sie den Betrag ein, den Sie einzahlen möchten(Format '123.45'):");
+              "\nBitte geben Sie den Betrag ein, den Sie einzahlen möchten(Format '123.45'):");
           String? betragEin = stdin.readLineSync();
           double? betrag = double.tryParse(betragEin ?? '');
           if (betrag != null) {
@@ -148,20 +148,20 @@ class bankkonto {
           }
         } else if (auswahl.toLowerCase() == "abheben") {
           print(
-              "Bitte geben Sie den Betrag ein, den Sie abheben möchten(Format '123.45'):");
+              "\nBitte geben Sie den Betrag ein, den Sie abheben möchten(Format '123.45'):");
           String? betragAbh = stdin.readLineSync();
           double? betrag = double.tryParse(betragAbh ?? '');
           if (betrag != null) {
             bankkonto.userData[currentAcc] = konto.abheben(betrag);
           } else {
-            print("Ungültiges Format.");
+            print("\nUngültiges Format.");
           }
         } else if (auswahl.toLowerCase() == "kontostand") {
           konto.kontostand_anzeigen();
         } else if (auswahl.toLowerCase() == "test") {
           print(bankkonto.userData);
         } else {
-          print("Falsche Eingabe.");
+          print("\nFalsche Eingabe.");
         }
       }
     }
