@@ -71,7 +71,7 @@ class bankkonto {
 
   static Map<String, double> neuesKonto() {
     print(
-        "\nBitte geben Sie eine Kontolegitimation ein! ('ende' um zu beenden.)");
+        "\nBitte geben Sie eine Kontolegitimation ein! EGAL WAS! ('ende' um zu beenden.)");
     String? inputNewLegit = stdin.readLineSync();
     if (inputNewLegit == null || inputNewLegit.isEmpty) {
       print("Keine Eingabe.");
