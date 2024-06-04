@@ -15,7 +15,7 @@ Verwende diese Klasse, um ein Bankkonto-Objekt zu erstellen und verschiedene Ope
 
 import 'dart:io';
 
-class bankkonto {
+class Bankkonto {
   static Map<String, double> userData = {
     "1982831": 123.13,
     "1880130": 130928.31,
@@ -24,7 +24,7 @@ class bankkonto {
   String Kontolegitimation;
   double kontostand;
 
-  bankkonto(this.Kontolegitimation, this.kontostand);
+  Bankkonto(this.Kontolegitimation, this.kontostand);
 
   double einzahlen(double e) {
     kontostand += e;
@@ -38,6 +38,19 @@ class bankkonto {
       kontostand -= a;
       print(
           "\nDie Auszahlung von $a € war erfolgreich. Aktueller Kontostand: $kontostand €");
+      return kontostand;
+    } else {
+      print(
+          "\nSie haben nicht genug Geld auf dem Konto. Aktueller Kontostand: $kontostand €");
+      return kontostand;
+    }
+  }
+
+  double uberweisen(double betrag) {
+    if (kontostand >= betrag) {
+      kontostand -= betrag;
+      print(
+          "\nDie Überweisung von $betrag € war erfolgreich. Aktueller Kontostand: $kontostand €");
       return kontostand;
     } else {
       print(
@@ -123,11 +136,11 @@ class bankkonto {
       return mainMenu();
     } else {
       String currentAcc = login();
-      bankkonto konto = bankkonto(currentAcc, userData[currentAcc]!);
+      Bankkonto konto = Bankkonto(currentAcc, userData[currentAcc]!);
 
       while (true) {
         print(
-            "\n\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.\n");
+            "\n\nWas möchten Sie tun?\n- 'einzahlen' um Geld einzuzahlen,\n- 'abheben' um Geld abzuheben,\n- 'uberweisen' um Geld zu überweisen,\n- 'kontostand' um den Kontostand anzuzeigen,\n- 'logout' um sich auszuloggen,\n- 'ende' um zu beenden,\n- 'test' für die Gesamten konten.\n");
         String? auswahl = stdin.readLineSync();
         if (auswahl == null || auswahl.isEmpty) {
           print("\nKeine Eingabe.");
@@ -142,7 +155,7 @@ class bankkonto {
           String? betragEin = stdin.readLineSync();
           double? betrag = double.tryParse(betragEin ?? '');
           if (betrag != null) {
-            bankkonto.userData[currentAcc] = konto.einzahlen(betrag);
+            Bankkonto.userData[currentAcc] = konto.einzahlen(betrag);
           } else {
             print("Ungültiges Format.");
           }
@@ -152,14 +165,40 @@ class bankkonto {
           String? betragAbh = stdin.readLineSync();
           double? betrag = double.tryParse(betragAbh ?? '');
           if (betrag != null) {
-            bankkonto.userData[currentAcc] = konto.abheben(betrag);
+            Bankkonto.userData[currentAcc] = konto.abheben(betrag);
           } else {
             print("\nUngültiges Format.");
+          }
+        } else if (auswahl.toLowerCase() == "uberweisen") {
+          print(
+              "\nBitte geben Sie das Konto ein, an dem Sie überweisen möchten:");
+          String? uberwKonto = stdin.readLineSync();
+          if (uberwKonto == null || uberwKonto.isEmpty) {
+            print("\nKeine Eingabe.");
+          } else {
+            if (Bankkonto.userData.containsKey(uberwKonto)) {
+              print(
+                  "\nBitte geben Sie den Betrag ein, den Sie übwerweisen möchten(Format '123.45'):");
+              String? betragAbh = stdin.readLineSync();
+              double? betragAbhDouble = double.tryParse(betragAbh ?? '');
+              if (betragAbhDouble != null) {
+                Bankkonto.userData[currentAcc] =
+                    konto.uberweisen(betragAbhDouble);
+                if (Bankkonto.userData[uberwKonto] != null) {
+                  Bankkonto.userData[uberwKonto] =
+                      Bankkonto.userData[uberwKonto]! + betragAbhDouble;
+                }
+              } else {
+                print("Ungültiges Format");
+              }
+            } else {
+              print("Konto nicht gefunden.");
+            }
           }
         } else if (auswahl.toLowerCase() == "kontostand") {
           konto.kontostand_anzeigen();
         } else if (auswahl.toLowerCase() == "test") {
-          print(bankkonto.userData);
+          print(Bankkonto.userData);
         } else {
           print("\nFalsche Eingabe.");
         }
@@ -169,5 +208,5 @@ class bankkonto {
 }
 
 void main() {
-  bankkonto.mainMenu();
+  Bankkonto.mainMenu();
 }
