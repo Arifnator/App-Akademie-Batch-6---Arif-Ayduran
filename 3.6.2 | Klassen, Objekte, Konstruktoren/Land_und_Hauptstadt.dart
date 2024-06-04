@@ -6,9 +6,8 @@ class Country {
 
   Country(this.name, this.area, this.population, this.capital);
 
-  void printCountryDetails() {
-    print(
-        "Das Land $name hat $area m2 Fläche und $population Einwohner. ${capital.printCapitalDetails()}");
+  String returnCountryDetails() {
+    return "Das Land $name hat $area km2 Fläche und $population Einwohner. ${capital.returnCapitalDetails()}";
   }
 }
 
@@ -18,17 +17,29 @@ class Capital {
   int population;
   Capital(this.name, this.area, this.population);
 
-  String printCapitalDetails() {
-    return "Die Hauptstadt $name hat $area m2 Fläche und $population Einwohner.";
+  String returnCapitalDetails() {
+    return "Die Hauptstadt $name hat $area km2 Fläche und $population Einwohner.";
   }
 }
 
 void main() {
-  Country country1 = Country(
-      "Deutschland", 357592, 83800000, Capital("Berlin", 891800, 3645000));
-  Country country2 =
-      Country("Türkei", 783562, 84980000, Capital("Ankara", 24521000, 5663000));
+  List<Country> countryList = [
+    Country("Deutschland", 357592, 83800000, Capital("Berlin", 891, 3645000)),
+    Country("Türkei", 783562, 84980000, Capital("Ankara", 24521, 5663000)),
+  ];
 
-  country1.printCountryDetails();
-  country2.printCountryDetails();
+  countryList
+      .add(Country("Italien", 301340, 60360000, Capital("Rom", 1285, 2873000)));
+
+  countryList.forEach((country) => print(country.returnCountryDetails()));
+
+  /*
+  
+  oder:
+
+  for (Country country in countryList) {
+    print(country.returnCountryDetails());
+  }
+  
+  */
 }
