@@ -74,6 +74,17 @@ class Kurs {
   String beschreibeKurs() =>
       "\nKurs Name: $kursName, Kurs Code: $kursCode\n\nEingeschriebene Studenten:\n" +
       studentenListe.map((student) => student.beschreibePerson()).join("\n");
+
+  /*
+      ODER:
+      String beschreibeKurs() {
+      String beschreibung = "Kurs: $kursName, KursCode: $kursCode\nEingeschriebene Studenten:";
+      for (var student in studentenListe) {
+        beschreibung += "\n${student.beschreibePerson()}";
+      }
+      return beschreibung;
+  }
+  */
 }
 
 void main() {
