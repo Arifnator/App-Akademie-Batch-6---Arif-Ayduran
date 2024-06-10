@@ -13,6 +13,14 @@ kontostand_anzeigen(): Eine Methode, die den aktuellen Kontostand des Bankkontos
 Verwende diese Klasse, um ein Bankkonto-Objekt zu erstellen und verschiedene Operationen wie Einzahlung, Abhebung und Anzeige des Kontostands durchzuführen.
 */
 
+
+
+
+// SWICH BENUTZEN
+// TOLOWERCASE EINMAL
+
+
+
 import 'dart:io';
 
 class Bankkonto {
@@ -68,13 +76,14 @@ class Bankkonto {
         "\nWillkommen bei der Bank Arifmethrisch.\n\nWas möchten Sie tun?\n- 'neu' um ein neues Bankkonto anzulegen,\n- 'login' um auf Ihr Konto zuzugreifen\n- 'ende' um zu beenden.\n");
     String? inputLogin = stdin.readLineSync();
     if (inputLogin == null || inputLogin.isEmpty) {
+      inputLogin = inputLogin!.toLowerCase();
       print("Keine Eingabe.");
       return newReg();
-    } else if (inputLogin.toLowerCase() == "ende") {
+    } else if (inputLogin == "ende") {
       exit(0);
-    } else if (inputLogin.toLowerCase() == "neu") {
+    } else if (inputLogin == "neu") {
       return true;
-    } else if (inputLogin.toLowerCase() == "login") {
+    } else if (inputLogin  == "login") {
       return false;
     } else {
       print("Falsche eingabe.");
