@@ -31,22 +31,22 @@ abstract class Widget {
 }
 
 class MaterialApp extends Widget {
-  final Widget? home;
+  final Scaffold? home;
   const MaterialApp({this.home});
 }
 
 class Scaffold extends MaterialApp {
-  final Widget? body;
+  final Center? body;
   const Scaffold({this.body});
 }
 
 class Center extends Scaffold {
-  final Widget? child;
+  final Column? child;
   const Center({this.child});
 }
 
 class Column extends Center {
-  final List<Widget>? children;
+  final List<Text>? children;
   const Column({this.children});
 }
 
@@ -70,7 +70,22 @@ Widget build(BuildContext context) {
   return myApp;
 }
 
+const Widget myApp = MaterialApp(
+  home: Scaffold(
+    body: Center(
+      child: Column(
+        children: [
+          Text("Hallo"),
+        ],
+      ),
+    ),
+  ),
+);
+
 void main() {
   BuildContext buildContext = BuildContext();
   build(buildContext);
+    final String halloText =
+      (myApp as MaterialApp).home!.body!.child!.children!.first.text;
+  print(halloText);
 }
