@@ -35,22 +35,22 @@ class MaterialApp extends Widget {
   const MaterialApp({this.home});
 }
 
-class Scaffold extends Widget {
+class Scaffold extends MaterialApp {
   final Widget? body;
   const Scaffold({this.body});
 }
 
-class Center extends Widget {
+class Center extends Scaffold {
   final Widget? child;
   const Center({this.child});
 }
 
-class Column extends Widget {
+class Column extends Center {
   final List<Widget>? children;
   const Column({this.children});
 }
 
-class Text extends Widget {
+class Text extends Column {
   final String text;
   const Text(this.text);
 }
