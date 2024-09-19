@@ -9,6 +9,9 @@
 
 // final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+// String whereRatingValue = "Alle";
+// String? wherePLZFilterValue;
+
 // void _updateRestaurant(String restaurantId, Map<String, dynamic> updates) {
 //   _firestore.collection("Restaurants").doc(restaurantId).update(updates);
 // }
@@ -68,6 +71,9 @@
 // class _RestaurantListPageState extends State<RestaurantListPage> {
 //   String dropdownOrderByValue = "Name";
 //   String dropdownOrderAscDescValue = "Aufsteigend";
+
+//   TextEditingController wherePlzValueController = TextEditingController();
+//   Color wherePlzAlertColor = Colors.white;
 
 //   bool dropdownIsLoading = true;
 
@@ -383,11 +389,24 @@
 //                     ],
 //                   ),
 //                   SizedBox(
-//                     height: 640,
+//                     height: 570,
 //                     width: MediaQuery.of(context).size.width,
 //                     child: StreamBuilder<QuerySnapshot>(
 //                       stream: _firestore
 //                           .collection("Restaurants")
+//                           .where(
+//                             "Rating",
+//                             isEqualTo: whereRatingValue == "Alle"
+//                                 ? null
+//                                 : int.parse(whereRatingValue),
+//                           )
+//                           .where(
+//                             "PLZ",
+//                             isEqualTo: wherePLZFilterValue == null ||
+//                                     wherePLZFilterValue!.isEmpty
+//                                 ? null
+//                                 : int.parse(wherePLZFilterValue!),
+//                           )
 //                           .orderBy(dropdownOrderByValue,
 //                               descending:
 //                                   dropdownOrderAscDescValue == "Aufsteigend"
@@ -402,8 +421,8 @@
 //                         }
 
 //                         if (snapshot.hasError) {
-//                           _showSnackbar("Firestore error: ${snapshot.error}");
-
+//                           // _showSnackbar("Firestore error: ${snapshot.error}");
+//                           print(snapshot.error);
 //                           return Text("Error: ${snapshot.error}");
 //                         }
 
@@ -489,6 +508,72 @@
 //                           },
 //                         );
 //                       },
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     height: 50,
+//                     width: MediaQuery.of(context).size.width,
+//                     child: Row(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       children: [
+//                         DropdownButton<String>(
+//                           value: whereRatingValue,
+//                           icon: const Icon(Icons.arrow_downward),
+//                           onChanged: (String? newValue) {
+//                             setState(() {
+//                               whereRatingValue = newValue!;
+//                             });
+//                           },
+//                           items: <String>["Alle", "0", "1", "2", "3", "4", "5"]
+//                               .map<DropdownMenuItem<String>>((String value) {
+//                             return DropdownMenuItem<String>(
+//                               value: value,
+//                               child: Text(value),
+//                             );
+//                           }).toList(),
+//                         ),
+//                         const SizedBox(
+//                           width: 20,
+//                         ),
+//                         Expanded(
+//                           child: TextField(
+//                             controller: wherePlzValueController,
+//                             decoration: InputDecoration(
+//                                 labelText: "PLZ Filtern",
+//                                 border: const OutlineInputBorder(),
+//                                 fillColor: wherePlzAlertColor,
+//                                 filled: true),
+//                             keyboardType: TextInputType.number,
+//                             onChanged: (value) {
+//                               int? parsing = int.tryParse(value);
+//                               if (parsing == null ||
+//                                   parsing < 10000 ||
+//                                   parsing > 99999) {
+//                                 if (value.isEmpty) {
+//                                   setState(() {
+//                                     wherePlzAlertColor = Colors.white;
+//                                     wherePLZFilterValue = null;
+//                                   });
+//                                 } else {
+//                                   setState(() {
+//                                     wherePlzAlertColor = Colors.red;
+//                                     // _showSnackbar(
+//                                     //     "Text muss eine gültige Postleitzahl sein (10000-99999)");
+//                                   });
+//                                 }
+//                               } else {
+//                                 setState(() {
+//                                   wherePlzAlertColor = Colors.white;
+//                                   wherePLZFilterValue = value;
+//                                 });
+//                               }
+//                             },
+//                           ),
+//                         ),
+//                         const SizedBox(
+//                           width: 65,
+//                         ),
+//                       ],
 //                     ),
 //                   ),
 //                 ],
